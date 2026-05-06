@@ -1,0 +1,24 @@
+# ArgoCD Application resource for the nginx deployment
+# TODO: Fill in the placeholder values to complete the configuration
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # TODO: Replace with your gitops-lab-05 repository URL
+    # Cloud Labs: https://github.com/<username>/gitops-lab-05
+    # Local Labs from ArgoCD: http://gitea-http.argocd.svc.cluster.local:8100/<username>/gitops-lab-05
+    repoURL: https://github.com/<your-username>/gitops-lab-05.git
+    targetRevision: main
+    path: apps/nginx
+  destination:
+    # TODO: Set the Kubernetes API server URL (in-cluster default)
+    server: ""
+    # TODO: Set the target namespace
+    namespace: ""
+  syncPolicy:
+    # TODO: Configure automated sync with prune and selfHeal
+    {}

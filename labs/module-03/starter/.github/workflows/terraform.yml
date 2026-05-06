@@ -1,0 +1,49 @@
+# Terraform CI/CD — Lab 03: Infrastructure as Code with Terraform
+#
+# TODO: Complete this workflow file by following the lab tasks.
+#
+# Action SHAs for pinning:
+#   actions/checkout v4.2.2:                    11bd71901bbe5b1630ceea73d27597364c9af683
+#   hashicorp/setup-terraform v3.1.2:           b9cd54a3c349d3f38e8881555e7e3f22b67044a7
+#   aws-actions/configure-aws-credentials v4.1.0: ececac1a45f3b08a01d2dd070d28d111c5fe6722
+#
+# Task 3: Create a workflow that:
+#   - Triggers on push to main and pull requests to main
+#   - Sets permissions: contents: read, pull-requests: write
+#   - Configures AWS credentials from repository secrets
+#   - Runs terraform init, validate, and plan on every trigger
+#   - Runs terraform apply only on push to main (not on PRs)
+
+name: Terraform CI/CD
+
+# TODO: Add triggers for push to main and pull requests to main
+
+# TODO: Add permissions block
+
+env:
+  TF_VERSION: "1.14.8"
+  AWS_REGION: "eu-west-1"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: terraform/
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      # TODO: Add setup-terraform step using hashicorp/setup-terraform
+      #       with terraform_version set to ${{ env.TF_VERSION }}
+
+      # TODO: Add configure-aws-credentials step using aws-actions/configure-aws-credentials
+      #       with aws-access-key-id, aws-secret-access-key, and aws-region
+
+      # TODO: Add terraform init step
+
+      # TODO: Add terraform validate step
+
+      # TODO: Add terraform plan step with -no-color -out=tfplan
+
+      # TODO: Add terraform apply step (only on push to main)
+      #       Use: terraform apply -auto-approve tfplan
